@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('real_name', 100);
             $table->enum('gender', ['male', 'female']) -> default('male');
-            $table->foreignId('universes_id') -> constrained('universes');
+            $table->foreignId('universe_id') -> constrained('universes');
             $table->timestamps();
         });
     }

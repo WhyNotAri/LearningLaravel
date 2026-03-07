@@ -10,6 +10,11 @@ class Superheroes extends Model
         'name',
         'real_name',
         'gender',
-        'id_universe'
+        'universe_id'
     ];
+
+    public function Universe(): BelongsTo
+    {
+        return $this->belongsTo(Universe::class);
+    }
 }

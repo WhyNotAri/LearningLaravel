@@ -12,4 +12,9 @@ class Universe extends Model
         'company',
         'age'
     ];
+
+    public function Superheroes(): HasMany
+    {
+        return $this->hasMany(Superheroes::class);
+    }
 }
