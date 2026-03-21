@@ -47,7 +47,8 @@ class UniverseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $universes = Universe::findOrFail($id);
+        return view('universes.show', compact('universes'));
     }
 
     /**
@@ -55,7 +56,8 @@ class UniverseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $universe = Universe::findOrFail($id);
+        return view('universes.edit', compact('universe'));
     }
 
     /**
@@ -63,7 +65,14 @@ class UniverseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $universe = Universe::findOrFail($id);
+        $universe -> update([
+            'name' => $request -> name,
+            'company' => $request -> company,
+            'age' => $request -> age 
+        ]);
+
+        return redirect() -> route('universes.show', $universe -> id);
     }
 
     /**
@@ -71,6 +80,12 @@ class UniverseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $universe = Universe::findOrFail($id);
+
+        $superheroes = Superheroes::where('universe_id', $universe -> id) -> delete();
+
+        $universe -> delete();
+
+        return redirect() -> route('universes.index');
     }
 }

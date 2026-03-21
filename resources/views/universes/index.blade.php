@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Universes</h1>
+    <button><a href="{{ route('universes.create') }}">Create New Universe</a></button>
     <table>
         <thead>
             <tr>
@@ -23,6 +24,7 @@
                     <td>{{ $universe->name }}</td>
                     <td>{{ $universe->company }}</td>
                     <td>{{ $universe->age }}</td>
+                    <td><button><a href="{{ route('universes.show', $universe->id) }}">View</a></button></td>
                 </tr>
             @endforeach
         </tbody>
