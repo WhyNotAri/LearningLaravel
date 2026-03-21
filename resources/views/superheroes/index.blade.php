@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Superheroes</h1>
+    <button><a href="{{ route('superheroes.create') }}">Create New Superhero</a></button>
+    <br><br>
     <table>
         <thead>
             <tr>
@@ -25,6 +27,7 @@
                     <td>{{ $superhero->real_name }}</td>
                     <td>{{ $superhero->gender }}</td>
                     <td>{{ $superhero->universe_id }}</td>
+                    <td><button><a href="{{ route('superheroes.show', $superhero->id) }}">View</a></button></td>
                 </tr>
             @endforeach
         </tbody>

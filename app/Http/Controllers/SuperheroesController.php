@@ -47,7 +47,8 @@ class SuperheroesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $superheroes = Superheroes::findOrFail($id);
+        return view('superheroes.show', compact('superheroes'));
     }
 
     /**
@@ -55,7 +56,8 @@ class SuperheroesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $superheroes = Superheroes::findOrFail($id);
+        return view('superheroes.edit', compact('superheroes'));
     }
 
     /**
@@ -63,7 +65,15 @@ class SuperheroesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $superheroes = Superheroes::findOrFail($id);
+
+        $superheroes -> update([
+            'name' => $request -> name,
+            'real_name' => $request -> real_name,
+            'gender' => $request -> gender,
+            'universe_id' => $request -> universe_id
+        ]);
+        return redirect() -> route('superheroes.show', $superheroes->id);
     }
 
     /**
@@ -71,6 +81,8 @@ class SuperheroesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $superheroes = Superheroes::findOrFail($id);
+        $superheroes -> delete();
+        return redirect() -> route('superheroes.index');
     }
 }
